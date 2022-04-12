@@ -1,10 +1,10 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
-import Image from "next/image";
 
 export default function Home() {
   const [display, setDisplay] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     speaker: "",
@@ -88,7 +88,7 @@ export default function Home() {
             </div>
           </div>
           <div className="bad">
-            <Image
+            <img
               src="https://res.cloudinary.com/ugwutotheeshoes/image/upload/c_scale,h_450,w_750/v1649721585/pawel-czerwinski-dgJT71cXlC4-unsplash_usrnmt.jpg"
               alt="event image"
             />
