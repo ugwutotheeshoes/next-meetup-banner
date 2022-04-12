@@ -1,8 +1,30 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { useState } from "react";
+import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 
 export default function Home() {
+  const [display, setDisplay] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    speaker: "",
+    date: "",
+    time: "",
+    detail: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setDisplay(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormData({ ...formData });
+    setDisplay(true);
+    console.log(formData);
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -12,58 +34,80 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <h1 className={styles.title}>event meetup banner</h1>
+        <div className="run">
+          <div className="details">
+            <div className="label">
+              <label>event name</label>
+              <input
+                type="text"
+                placeholder="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="label">
+              <label>event speakers</label>
+              <input
+                type="text"
+                placeholder="speaker"
+                name="speaker"
+                value={formData.speaker}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="label">
+              <label>date</label>
+              <input
+                type="text"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="label">
+              <label>time</label>
+              <input
+                type="number"
+                name="time"
+                value={formData.time}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="label">
+              <label>Venue</label>
+              <textarea
+                className="textarea"
+                type="text"
+                name="detail"
+                placeholder="type here"
+                value={formData.detail}
+                onChange={handleChange}
+              />
+              <button onClick={handleSubmit}>Generate Banner</button>
+            </div>
+          </div>
+          {/* <CloudinaryContext cloudName="ugwutotheeshoes">
+                <Image className="cloud" publicId="scott-hew-yq8BdWTTPcI-unsplash_jsffro.jpg">
+                <Transformation height="300" width="450" crop="scale" />
+                </Image>
+              </CloudinaryContext> */}
+          <div className="bad">
+            <Image
+              src="https://res.cloudinary.com/ugwutotheeshoes/image/upload/c_scale,h_450,w_750/v1649721585/pawel-czerwinski-dgJT71cXlC4-unsplash_usrnmt.jpg"
+              alt="event image"
+            />
+            <div className="view">
+              <h1>{display ? formData.name : ""}</h1>
+              <h3>{display ? `speaker: ${formData.speaker}` : ""}</h3>
+              <p> {display ? `date: ${formData.date}` : ""}</p>
+              <p> {display ? `time: ${formData.time}pm` : ""}</p>
+              <p>{display ? `venue: ${formData.detail}` : ""}</p>
+            </div>
+          </div>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
-  )
+  );
 }
