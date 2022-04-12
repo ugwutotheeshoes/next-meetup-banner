@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "cloudinary-react": "^1.7.2",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0"

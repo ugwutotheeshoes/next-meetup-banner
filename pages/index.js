@@ -1,11 +1,10 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
-import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
+import Image from "next/image";
 
 export default function Home() {
   const [display, setDisplay] = useState(false);
-
   const [formData, setFormData] = useState({
     name: "",
     speaker: "",
@@ -88,11 +87,6 @@ export default function Home() {
               <button onClick={handleSubmit}>Generate Banner</button>
             </div>
           </div>
-          {/* <CloudinaryContext cloudName="ugwutotheeshoes">
-                <Image className="cloud" publicId="scott-hew-yq8BdWTTPcI-unsplash_jsffro.jpg">
-                <Transformation height="300" width="450" crop="scale" />
-                </Image>
-              </CloudinaryContext> */}
           <div className="bad">
             <Image
               src="https://res.cloudinary.com/ugwutotheeshoes/image/upload/c_scale,h_450,w_750/v1649721585/pawel-czerwinski-dgJT71cXlC4-unsplash_usrnmt.jpg"
