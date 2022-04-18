@@ -22,7 +22,6 @@ export default function Home() {
     e.preventDefault();
     setFormData({ ...formData });
     setDisplay(true);
-    console.log(formData);
   };
   return (
     <div className={styles.container}>
